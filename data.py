@@ -1,9 +1,13 @@
-import boto3
-from io import BytesIO
-from datetime import datetime
-import feather
+import datetime
 import gzip
+import io
 import os
+import pandas
+
+try:
+    import boto3
+except ImportError:
+    pass
 
 
 def read_feather(pathspec, aws_access_key_id=None, aws_secret_access_key=None,
@@ -31,20 +35,20 @@ def read_feather(pathspec, aws_access_key_id=None, aws_secret_access_key=None,
         s3obj = s3client.get_object(Bucket=s3_bucket, Key=s3_key)
         last_modified = s3obj['LastModified']
         if get_data:
-            compressed = BytesIO(s3obj['Body'].read())
+            compressed = io.BytesIO(s3obj['Body'].read())
             with gzip.GzipFile(mode='rb', fileobj=compressed) as f:
-                df = feather.read_dataframe(f)
+                df = pandas.read_feather(f)
         else:
             df = None
     else:
-        last_modified = datetime.fromtimestamp(
+        last_modified = datetime.datetime.fromtimestamp(
             os.path.getmtime(pathspec)).isoformat()
         if get_data:
             if pathspec.endswith('.gz'):
                 with gzip.open(pathspec) as f:
-                    df = feather.read_dataframe(f)
+                    df = pandas.read_feather(f)
             else:
-                df = feather.read_dataframe(pathspec)
+                df = pandas.read_feather(pathspec)
         else:
             df = None
 
