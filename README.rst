@@ -28,7 +28,7 @@ This application uses Plotly Dash and can be run at the command line::
 
   python app.py
 
-For more information about running a Plotly Dash app see their wiki: https://dash.plotly.com/layout
+For more information about running a Plotly Dash app see their wiki: https://dash.plotly.com/
 
 ya16sdb wiki
 ============
