@@ -27,8 +27,9 @@ SEARCH_OPTS = ['seqname', 'accession', 'version',
 SHAPES = ['circle', 'triangle-up', 'square', 'diamond',
           'pentagon', 'cross', 'star', 'hourglass']
 
-app = dash.Dash()
+app = dash.Dash(__name__)
 app.title = 'Species Outlier Plots'
+server = app.server
 
 # access all environment variables here
 FEATHER_FILE = os.environ.get('DATA_FILE', 'filter_details.feather.gz')
