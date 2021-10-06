@@ -26,11 +26,13 @@ Ploty Dash
 
 This application uses Plotly Dash and can be run at the command line::
 
-  python app.py
+  python3 app.py
 
 For more information about running a Plotly Dash app see their wiki: https://dash.plotly.com/
 
-ya16sdb wiki
+wiki
 ============
+
+For additional development tips:
 
 https://github.com/crosenth/ya16sdb-dash/wiki
