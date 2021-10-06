@@ -1,2 +1,1 @@
-boto3==1.18.26
-gunicorn==20.1.0
+gunicorn
